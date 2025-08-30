@@ -140,6 +140,17 @@ The model summary from the `notebooks/Predictive_Modeling.ipynb` notebook provid
         *   **Newspaper (Coefficient: 0.0003, p-value = 0.954):** The coefficient for Newspaper is very close to zero and its p-value is very high. This indicates that Newspaper advertising does not have a statistically significant linear relationship with Sales in this model. The negative sign, though negligible, suggests a very slight, almost non-existent, inverse relationship.
         *   **Intercept (β₀):** 4.6251. This represents the baseline sales when all advertising spend is zero.
 
+### Regression Model Coefficients and Statistics
+
+This table summarizes the estimated coefficients and their associated statistics from the Ordinary Least Squares (OLS) regression model. The significance level (alpha) for hypothesis testing is set at 0.05.
+
+| Feature | Coefficient (coef) | Std Error | t-value | P>|t| | [0.025 | 0.975] |
+|:--------|:-------------------|:----------|:--------|:------|:-------|:-------|
+| const   | 4.6251             | 0.308     | 15.041  | 0.000 | 4.019  | 5.232  |
+| TV      | 0.0544             | 0.001     | 39.592  | 0.000 | 0.052  | 0.057  |
+| Radio   | 0.1070             | 0.008     | 12.604  | 0.000 | 0.090  | 0.124  |
+| Newspaper | 0.0003           | 0.006     | 0.058   | 0.954 | -0.011 | 0.012  |
+
 *   **Multicollinearity (Variance Inflation Factor - VIF):**
     *   **What it means:** Multicollinearity occurs when independent variables in a regression model are highly correlated with each other. High multicollinearity can make it difficult to interpret the individual coefficients and can lead to unstable model estimates. VIF measures how much the variance of an estimated regression coefficient is inflated due to multicollinearity. A VIF value typically below 5 or 10 is considered acceptable.
     *   **Interpretation:** The VIF values for all variables in our model are very low (all less than 2). This indicates that there is no significant multicollinearity among the advertising channels, ensuring that the individual coefficients can be reliably interpreted.
