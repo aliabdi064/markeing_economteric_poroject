@@ -4,27 +4,28 @@
 
 **What is this project about?**
 
-This project aims to understand the relationship between advertising spend on different channels (TV, Radio, and Newspaper) and sales. We will use econometric techniques to build a predictive model that can not only forecast sales but also help in optimizing the advertising budget.
+This project aims to understand the relationship between advertising spend on different channels (TV, Radio, and Newspaper) and sales. We use econometric techniques to build a predictive model that can not only forecast sales but also help in optimizing the advertising budget.
 
 **Why is it important?**
 
 In today's competitive market, it's crucial for businesses to understand the effectiveness of their marketing campaigns. By analyzing the data, we can identify which advertising channels are providing the best return on investment and make data-driven decisions to maximize sales.
 
-**How will we do it?**
+## Project Structure
 
-We will follow a step-by-step approach:
+The project is organized into the following files:
 
-1.  **Data Exploration:** We'll start by exploring the dataset to understand its structure and the relationships between variables.
-2.  **Correlation Analysis:** We'll examine the correlation between different advertising channels and sales.
-3.  **Hypothesis Testing:** We'll formulate and test hypotheses to validate our assumptions.
-4.  **Regression Modeling:** We'll build a multiple linear regression model to predict sales based on advertising spend.
-5.  **Model Evaluation:** We'll evaluate the model's performance and interpret the results.
-6.  **Budget Optimization:** We'll use the model to find the optimal allocation of a £1000 budget to maximize sales.
-7.  **A/B Testing Discussion:** We will discuss the concept of A/B testing and its applicability to this dataset.
+-   `advertising.csv`: The raw dataset containing advertising spend and sales data.
+-   `exploratory_analysis.py`: A Python script for performing initial exploratory data analysis (EDA) and generating plots.
+-   `Exploratory_Data_Analysis.ipynb`: A Jupyter notebook with a more detailed walkthrough of the EDA.
+-   `regression_model.py`: A Python script for building and evaluating a linear regression model using `scikit-learn`.
+-   `Predictive_Modeling.ipynb` and `Predictive_Modeling_reconstructed.ipynb`: Jupyter notebooks that provide a deep dive into the predictive modeling process using `statsmodels`.
+-   `comprehensive_analysis.ipynb`: A notebook that provides a comprehensive analysis of the project.
+-   `show_data_sample.py`: A simple script to display a sample of the data.
+-   `REPORT.md`: This report, summarizing the project's findings.
 
 ## 1. Data Exploration and Preprocessing
 
-We started by loading the `advertising.csv` dataset and examining its structure. The dataset contains 200 rows and 4 columns: `TV`, `Radio`, `Newspaper`, and `Sales`. There are no missing values in the dataset.
+We started by loading the `advertising.csv` dataset and examining its structure. The dataset contains 200 rows and 4 columns: `TV`, `Radio`, `Newspaper`, and `Sales`. There are no missing values in the dataset. This analysis is primarily performed in the `exploratory_analysis.py` script and the `Exploratory_Data_Analysis.ipynb` notebook.
 
 ## 2. Correlation Analysis
 
@@ -34,15 +35,15 @@ We calculated the correlation between the variables in our dataset. The correlat
 *   **Radio** has a moderate positive correlation with Sales (0.58).
 *   **Newspaper** has a weak positive correlation with Sales (0.23).
 
-This suggests that TV and Radio are good predictors for Sales.
+This suggests that TV and Radio are good predictors for Sales. The correlation analysis can be found in `exploratory_analysis.py` and `Exploratory_Data_Analysis.ipynb`.
 
 ## 3. Hypothesis Testing
 
-We performed a hypothesis test to check the significance of the relationship between TV advertising and sales. The p-value for the TV coefficient was very close to zero, which means that we can reject the null hypothesis and conclude that there is a statistically significant relationship between TV advertising and sales.
+We performed a hypothesis test to check the significance of the relationship between TV advertising and sales. The p-value for the TV coefficient was very close to zero, which means that we can reject the null hypothesis and conclude that there is a statistically significant relationship between TV advertising and sales. This is detailed in the `Predictive_Modeling.ipynb` notebook.
 
 ## 4. Regression Modeling
 
-We built a multiple linear regression model to predict sales using all three advertising channels. The model summary shows that:
+We built a multiple linear regression model to predict sales using all three advertising channels. The model summary from the `Predictive_Modeling.ipynb` notebook shows that:
 
 *   **R-squared:** 0.897
 *   **Adjusted R-squared:** 0.896
@@ -50,17 +51,17 @@ We built a multiple linear regression model to predict sales using all three adv
 
 ## 5. Model Evaluation and Interpretation
 
-*   **R-squared and Adjusted R-squared:** The R-squared value of 0.897 indicates that approximately 89.7% of the variance in sales can be explained by the advertising spend on TV, Radio, and Newspaper. The adjusted R-squared is also very close to the R-squared, which means that the additional variables are adding value to the model.
+*   **R-squared and Adjusted R-squared:** The R-squared value of 0.897 indicates that approximately 89.7% of the variance in sales can be explained by the advertising spend on TV, Radio, and Newspaper.
 *   **F-statistic:** The F-statistic is very large (570.3) and the p-value is very close to zero, which means that the overall model is statistically significant.
 *   **Coefficients and p-values (t-test):**
-    *   **TV:** The coefficient for TV is 0.0458, and the p-value is very close to zero. This means that for every £1000 increase in TV advertising spend, sales are expected to increase by approximately 45.8 units, holding other variables constant. This is a statistically significant relationship.
-    *   **Radio:** The coefficient for Radio is 0.1885, and the p-value is very close to zero. This means that for every £1000 increase in Radio advertising spend, sales are expected to increase by approximately 188.5 units, holding other variables constant. This is a statistically significant relationship.
-    *   **Newspaper:** The coefficient for Newspaper is -0.0010, and the p-value is 0.860. This means that the relationship between Newspaper advertising spend and sales is not statistically significant. The coefficient is also very close to zero, which suggests that Newspaper advertising has a negligible impact on sales.
+    *   **TV:** The coefficient for TV is 0.0458. This is a statistically significant relationship.
+    *   **Radio:** The coefficient for Radio is 0.1885. This is a statistically significant relationship.
+    *   **Newspaper:** The coefficient for Newspaper is -0.0010. This relationship is not statistically significant.
 *   **Multicollinearity (VIF):** The VIF values for all variables are very low (all less than 2), which indicates that there is no significant multicollinearity in the model.
 
 ## 6. Budget Optimization
 
-We used the trained multiple linear regression model to find the optimal allocation of a £1000 budget across the three advertising channels to maximize sales. The optimal budget allocation is:
+We used the trained multiple linear regression model to find the optimal allocation of a £1000 budget. The optimal budget allocation is:
 
 *   **TV:** £0.00
 *   **Radio:** £1000.00
@@ -72,31 +73,25 @@ This result is driven by the fact that the coefficient for Radio is much larger 
 
 ## 7. A/B Testing Discussion
 
-**What is A/B testing?**
-
-A/B testing is a randomized controlled experiment where two or more versions of a variable are shown to different segments of users at the same time to see which version has the most impact on a specific metric.
-
-**Is A/B testing applicable to this dataset?**
-
-The `advertising.csv` dataset is an observational dataset, which means that the data was collected by observing the world as it is, without any intervention from our side. Therefore, a traditional A/B test is not applicable to this dataset.
-
-**What can we do instead?**
-
-While we cannot perform a traditional A/B test, our regression model can still provide valuable insights into the relationship between advertising spend and sales. However, we should be careful about making strong causal claims based on this observational data.
+The `advertising.csv` dataset is an observational dataset. Therefore, a traditional A/B test is not applicable. While we cannot perform a traditional A/B test, our regression model can still provide valuable insights. However, we should be careful about making strong causal claims based on this observational data.
 
 ## 8. Conclusion and Recommendations
 
 **Summary of Findings:**
 
-*   We have successfully built a multiple linear regression model that can predict sales based on advertising spend on TV, Radio, and Newspaper.
-*   The model has a high R-squared value, which means that it can explain a large portion of the variance in sales.
+*   We have successfully built a multiple linear regression model that can predict sales based on advertising spend.
+*   The model has a high R-squared value (0.897).
 *   TV and Radio advertising have a statistically significant positive impact on sales, with Radio having a much larger impact per pound spent.
 *   Newspaper advertising does not have a statistically significant impact on sales.
-*   We have found the optimal allocation of a £1000 budget to be entirely on Radio advertising.
 
 **Recommendations:**
 
-*   **Focus on Radio advertising:** The model suggests that Radio advertising is the most effective channel for increasing sales. The company should consider increasing its budget for Radio advertising.
-*   **Continue with TV advertising:** TV advertising also has a significant positive impact on sales, so it should be continued.
-*   **Re-evaluate Newspaper advertising:** The model suggests that Newspaper advertising is not effective. The company should consider re-evaluating its strategy for Newspaper advertising. It might be better to reallocate the budget from Newspaper to Radio and TV.
-*   **Further Analysis:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.
+*   **Focus on Radio advertising:** The model suggests that Radio advertising is the most effective channel for increasing sales.
+*   **Continue with TV advertising:** TV advertising also has a significant positive impact on sales.
+*   **Re-evaluate Newspaper advertising:** The company should consider re-evaluating its strategy for Newspaper advertising and potentially reallocate the budget to Radio and TV.
+
+**Next Steps and Further Analysis:**
+
+*   **Explore Interaction Terms:** The current model assumes that the effect of each advertising channel is independent. It would be worthwhile to explore interaction terms (e.g., the combined effect of TV and Radio advertising) to see if they improve the model.
+*   **Consider Non-linear Models:** The relationship between advertising spend and sales might not be perfectly linear. Exploring non-linear models could potentially yield a more accurate model.
+*   **Run Controlled Experiments:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.
