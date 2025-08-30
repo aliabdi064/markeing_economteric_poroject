@@ -146,6 +146,55 @@ The model summary from the `notebooks/Predictive_Modeling.ipynb` notebook provid
 
 This comprehensive analysis is detailed in the `notebooks/Predictive_Modeling.ipynb` notebook.
 
+## 5. Assumptions of OLS Regression and Diagnostic Considerations
+
+For a multiple linear regression model to provide reliable and unbiased estimates, several key assumptions about the data and the error term (`ε`) must be met. While our primary analysis focused on model building and interpretation, a thorough econometric study also involves diagnostic tests to validate these assumptions.
+
+Here are the core assumptions of Ordinary Least Squares (OLS) regression and their diagnostic considerations:
+
+### 5.1 Linearity
+
+*   **Assumption:** The relationship between the independent variables (TV, Radio, Newspaper) and the dependent variable (Sales) is linear.
+*   **Why it's important:** If the relationship is non-linear, a linear model will not accurately capture the true relationship, leading to biased coefficients and poor predictions.
+*   **Diagnostic Consideration:** Visual inspection of scatter plots (e.g., Sales vs. TV, Sales vs. Radio) can provide initial insights. Residual plots (residuals vs. fitted values) can also reveal non-linear patterns if present.
+*   **In this project:** Our initial EDA (pair plots with regression lines) suggested a largely linear relationship, which supports the use of a linear model.
+
+### 5.2 No Perfect Multicollinearity
+
+*   **Assumption:** The independent variables are not perfectly correlated with each other.
+*   **Why it's important:** Perfect multicollinearity makes it impossible for the model to uniquely estimate the individual coefficients of the correlated variables. High (but not perfect) multicollinearity can lead to unstable and unreliable coefficient estimates.
+*   **Diagnostic Test:** Variance Inflation Factor (VIF).
+*   **In this project:** As discussed in Section 4, the VIF values for all our independent variables were very low (all less than 2), indicating that **this assumption is met**, and there is no significant multicollinearity.
+
+### 5.3 Homoscedasticity (Constant Variance of Residuals)
+
+*   **Assumption:** The variance of the error terms (`ε`) is constant across all levels of the independent variables. In simpler terms, the spread of the residuals should be roughly the same across the range of predicted values.
+*   **Why it's important:** Violations (heteroscedasticity) lead to inefficient (though still unbiased) coefficient estimates, meaning standard errors are incorrect, and thus hypothesis tests (t-tests, F-test) and confidence intervals are unreliable.
+*   **Diagnostic Tests:**
+    *   **Visual Inspection:** Plotting residuals against fitted values. A "fanning out" or "funnel" shape suggests heteroscedasticity.
+    *   **Statistical Tests:** Breusch-Pagan test, White test.
+*   **In this project:** Explicit statistical tests for homoscedasticity were not performed in the provided notebooks. However, visual inspection of residual plots would be a crucial next step for a complete diagnostic.
+
+### 5.4 No Autocorrelation (Independence of Residuals)
+
+*   **Assumption:** The error terms (`ε`) are independent of each other. This is particularly relevant for time-series data, where errors from one period might be correlated with errors from a previous period.
+*   **Why it's important:** Autocorrelation leads to inefficient coefficient estimates and incorrect standard errors, similar to heteroscedasticity.
+*   **Diagnostic Test:** Durbin-Watson test. A Durbin-Watson statistic close to 2 suggests no autocorrelation. Values significantly below 2 indicate positive autocorrelation, and values significantly above 2 indicate negative autocorrelation.
+*   **In this project:** The `data/advertising.csv` dataset is cross-sectional (not time-series), so autocorrelation is generally less of a concern. However, if the data had a time component, a Durbin-Watson test would be essential. The `statsmodels` summary output often includes a Durbin-Watson statistic, which can be checked.
+
+### 5.5 Normality of Residuals
+
+*   **Assumption:** The error terms (`ε`) are normally distributed.
+*   **Why it's important:** While OLS estimates remain unbiased even with non-normal errors (especially with large sample sizes due to the Central Limit Theorem), normality is required for the t-tests and F-test to be strictly valid for small sample sizes. It also helps in constructing accurate confidence intervals and prediction intervals.
+*   **Diagnostic Tests:**
+    *   **Visual Inspection:** Histogram of residuals, Q-Q plot (Quantile-Quantile plot).
+    *   **Statistical Tests:** Jarque-Bera test, Shapiro-Wilk test.
+*   **In this project:** Explicit statistical tests for normality of residuals were not performed in the provided notebooks. Visual inspection of a histogram of residuals and a Q-Q plot would be beneficial.
+
+### Summary of Diagnostic Considerations
+
+While the model demonstrates strong predictive power (high R-squared) and significant predictors (low p-values for TV and Radio), a complete econometric analysis would involve systematically checking all OLS assumptions. The provided notebooks primarily focus on model building and interpretation. For future work, incorporating these diagnostic tests would further strengthen the model's validity and the reliability of its inferences.
+
 ## 6. Budget Optimization
 
 We used the trained multiple linear regression model to find the optimal allocation of a £1000 budget. The optimal budget allocation is:
