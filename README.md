@@ -71,9 +71,9 @@ We calculated the Pearson correlation coefficient between each advertising chann
 **Results:**
 The correlation matrix shows the following relationships:
 
-*   **TV and Sales (0.78):** This indicates a strong positive linear correlation. As TV advertising spend increases, sales tend to increase significantly.
-*   **Radio and Sales (0.58):** This shows a moderate positive linear correlation. Radio advertising also contributes positively to sales, though less strongly than TV.
-*   **Newspaper and Sales (0.23):** This suggests a weak positive linear correlation. Newspaper advertising has a much weaker linear relationship with sales compared to TV and Radio.
+*   **TV and Sales (0.901):** This indicates a very strong positive linear correlation. As TV advertising spend increases, sales tend to increase significantly.
+*   **Radio and Sales (0.350):** This shows a weak to moderate positive linear correlation. Radio advertising also contributes positively to sales.
+*   **Newspaper and Sales (0.158):** This suggests a very weak positive linear correlation. Newspaper advertising has a negligible linear relationship with sales compared to TV and Radio.
 
 These results suggest that TV and Radio advertising are likely better predictors for Sales than Newspaper advertising. The correlation analysis can be found in `scripts/exploratory_analysis.py` and `notebooks/Exploratory_Data_Analysis.ipynb`.
 
@@ -124,21 +124,21 @@ We built a multiple linear regression model using the `statsmodels` library in P
 **Model Summary and Key Metrics:**
 The model summary from the `notebooks/Predictive_Modeling.ipynb` notebook provides several key metrics for evaluating the model's performance and the significance of its components:
 
-*   **R-squared (0.897) and Adjusted R-squared (0.896):**
+*   **R-squared (0.903) and Adjusted R-squared (0.901):**
     *   **What they mean:** R-squared measures the proportion of the variance in the dependent variable (Sales) that can be predicted from the independent variables (advertising spend). Adjusted R-squared is a modified version that accounts for the number of predictors in the model, providing a more accurate measure for models with multiple independent variables.
-    *   **Interpretation:** An R-squared value of 0.897 indicates that approximately 89.7% of the variation in Sales can be explained by the advertising spend on TV, Radio, and Newspaper. This is a very high value, suggesting that our model is a good fit for the data. The adjusted R-squared being very close to R-squared suggests that the included predictors are valuable and not just adding noise.
+    *   **Interpretation:** An R-squared value of 0.903 indicates that approximately 90.3% of the variation in Sales can be explained by the advertising spend on TV, Radio, and Newspaper. This is a very high value, suggesting that our model is a good fit for the data. The adjusted R-squared being very close to R-squared suggests that the included predictors are valuable and not just adding noise.
 
-*   **F-statistic (570.3) and its p-value (≈ 0.000):**
+*   **F-statistic (605.4) and its p-value (≈ 8.13e-99):**
     *   **What they mean:** The F-statistic is used to test the overall significance of the regression model. It compares the fit of the model with predictors to the fit of a model with no predictors. The p-value associated with the F-statistic tells us the probability of observing such an F-statistic if the null hypothesis (that all regression coefficients are zero) were true.
-    *   **Interpretation:** A very large F-statistic (570.3) and an extremely small p-value (close to zero) indicate that the overall regression model is statistically significant. This means that at least one of the advertising channels has a significant linear relationship with Sales.
+    *   **Interpretation:** A very large F-statistic (605.4) and an extremely small p-value (close to zero, specifically 8.13e-99) indicate that the overall regression model is statistically significant. This means that at least one of the advertising channels has a significant linear relationship with Sales.
 
 *   **Coefficients (β) and their p-values (t-test):**
     *   **What they mean:** The coefficients represent the estimated change in Sales for a one-unit increase in the corresponding advertising spend, holding other advertising spends constant. The p-value for each coefficient (from a t-test) indicates the statistical significance of that individual predictor.
     *   **Interpretation:**
-        *   **TV (Coefficient: 0.0458, p-value ≈ 0.000):** For every £1 increase in TV advertising spend, Sales are expected to increase by approximately 0.0458 units, holding Radio and Newspaper spend constant. The very low p-value indicates this relationship is highly statistically significant.
-        *   **Radio (Coefficient: 0.1885, p-value ≈ 0.000):** For every £1 increase in Radio advertising spend, Sales are expected to increase by approximately 0.1885 units, holding TV and Newspaper spend constant. This relationship is also highly statistically significant. Notably, Radio has a larger impact per unit of spend than TV.
-        *   **Newspaper (Coefficient: -0.0010, p-value = 0.860):** The coefficient for Newspaper is very close to zero and its p-value is very high. This indicates that Newspaper advertising does not have a statistically significant linear relationship with Sales in this model. The negative sign, though negligible, suggests a very slight, almost non-existent, inverse relationship.
-        *   **Intercept (β₀):** This represents the baseline sales when all advertising spend is zero.
+        *   **TV (Coefficient: 0.0544, p-value ≈ 0.000):** For every £1 increase in TV advertising spend, Sales are expected to increase by approximately 0.0458 units, holding Radio and Newspaper spend constant. The very low p-value indicates this relationship is highly statistically significant.
+        *   **Radio (Coefficient: 0.1070, p-value ≈ 0.000):** For every £1 increase in Radio advertising spend, Sales are expected to increase by approximately 0.1885 units, holding TV and Newspaper spend constant. This relationship is also highly statistically significant. Notably, Radio has a larger impact per unit of spend than TV.
+        *   **Newspaper (Coefficient: 0.0003, p-value = 0.954):** The coefficient for Newspaper is very close to zero and its p-value is very high. This indicates that Newspaper advertising does not have a statistically significant linear relationship with Sales in this model. The negative sign, though negligible, suggests a very slight, almost non-existent, inverse relationship.
+        *   **Intercept (β₀):** 4.6251. This represents the baseline sales when all advertising spend is zero.
 
 *   **Multicollinearity (Variance Inflation Factor - VIF):**
     *   **What it means:** Multicollinearity occurs when independent variables in a regression model are highly correlated with each other. High multicollinearity can make it difficult to interpret the individual coefficients and can lead to unstable model estimates. VIF measures how much the variance of an estimated regression coefficient is inflated due to multicollinearity. A VIF value typically below 5 or 10 is considered acceptable.
@@ -203,7 +203,7 @@ We used the trained multiple linear regression model to find the optimal allocat
 *   **Radio:** £1000.00
 *   **Newspaper:** £0.00
 
-Estimated maximum sales for a £1000 budget: **188.54**
+Estimated maximum sales for a £1000 budget: **111.63**
 
 This result is driven by the fact that the coefficient for Radio is much larger than the coefficients for TV and Newspaper.
 
