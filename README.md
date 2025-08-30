@@ -142,14 +142,9 @@ The model summary from the `notebooks/Predictive_Modeling.ipynb` notebook provid
 
 ### Regression Model Coefficients and Statistics
 
-This table summarizes the estimated coefficients and their associated statistics from the Ordinary Least Squares (OLS) regression model. The significance level (alpha) for hypothesis testing is set at 0.05.
+This image summarizes the estimated coefficients and their associated statistics from the Ordinary Least Squares (OLS) regression model. The significance level (alpha) for hypothesis testing is set at 0.05.
 
-| Feature   | Coefficient (coef) | Std Error | t-value | P>|t|   | [0.025 | 0.975] |
-|:----------|:------------------:|:---------:|:-------:|:-----:|:-------:|:-------:|
-| const     |       4.6251       |   0.308   | 15.041  | 0.000 |  4.019  |  5.232  |
-| TV        |       0.0544       |   0.001   | 39.592  | 0.000 |  0.052  |  0.057  |
-| Radio     |       0.1070       |   0.008   | 12.604  | 0.000 |  0.090  |  0.124  |
-| Newspaper |       0.0003       |   0.006   |  0.058  | 0.954 | -0.011  |  0.012  |
+![Regression Model Coefficients and Statistics](plots/regression_table.png)
 
 *   **Multicollinearity (Variance Inflation Factor - VIF):**
     *   **What it means:** Multicollinearity occurs when independent variables in a regression model are highly correlated with each other. High multicollinearity can make it difficult to interpret the individual coefficients and can lead to unstable model estimates. VIF measures how much the variance of an estimated regression coefficient is inflated due to multicollinearity. A VIF value typically below 5 or 10 is considered acceptable.
