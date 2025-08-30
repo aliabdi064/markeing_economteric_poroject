@@ -1,4 +1,4 @@
-# Marketing Econometric Project
+# Marketing Spend Optimization & Sales Forecasting
 
 This project aims to build an econometric model to predict sales based on marketing spend.
 
