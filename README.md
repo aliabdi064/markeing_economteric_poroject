@@ -197,15 +197,26 @@ While the model demonstrates strong predictive power (high R-squared) and signif
 
 ## 6. Budget Optimization
 
-We used the trained multiple linear regression model to find the optimal allocation of a £1000 budget. The optimal budget allocation is:
+The previous budget optimization aimed to maximize sales by allocating the entire budget to the most effective channel. Now, we will allocate the £1000 budget proportionally across all marketing channels based on their respective regression coefficients.
 
-*   **TV:** £0.00
-*   **Radio:** £1000.00
-*   **Newspaper:** £0.00
+**Strategy:** Allocate budget based on the proportion of each channel's positive coefficient relative to the sum of all positive coefficients.
 
-Estimated maximum sales for a £1000 budget: **111.63**
+**Results of Proportional Allocation:**
 
-This result is driven by the fact that the coefficient for Radio is much larger than the coefficients for TV and Newspaper.
+*   **Total Budget:** £1000.00
+*   **TV Coefficient:** 0.0544 (33.65% of positive coefficients)
+*   **Radio Coefficient:** 0.1070 (66.14% of positive coefficients)
+*   **Newspaper Coefficient:** 0.0003 (0.21% of positive coefficients)
+
+**Allocated Spend:**
+
+*   **TV:** £336.54
+*   **Radio:** £661.39
+*   **Newspaper:** £2.07
+
+**Estimated Sales with Proportional Allocation:** 93.72
+
+This result shows that while all channels receive a portion of the budget, the estimated sales are lower (93.72) compared to the previous strategy of allocating the entire budget to Radio (111.63). This highlights the trade-off between distributing the budget and maximizing overall sales.
 
 ## 7. A/B Testing Discussion
 
