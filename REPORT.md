@@ -12,16 +12,13 @@ In today's competitive market, it's crucial for businesses to understand the eff
 
 ## Project Structure
 
-The project is organized into the following files:
+The project is now organized into a clean and logical directory structure to enhance navigability and maintainability:
 
--   `advertising.csv`: The raw dataset containing advertising spend and sales data.
--   `exploratory_analysis.py`: A Python script for performing initial exploratory data analysis (EDA) and generating plots.
--   `Exploratory_Data_Analysis.ipynb`: A Jupyter notebook with a more detailed walkthrough of the EDA.
--   `regression_model.py`: A Python script for building and evaluating a linear regression model using `scikit-learn`.
--   `Predictive_Modeling.ipynb` and `Predictive_Modeling_reconstructed.ipynb`: Jupyter notebooks that provide a deep dive into the predictive modeling process using `statsmodels`.
--   `comprehensive_analysis.ipynb`: A notebook that provides a comprehensive analysis of the project.
--   `show_data_sample.py`: A simple script to display a sample of the data.
--   `REPORT.md`: This report, summarizing the project's findings.
+-   **`data/`**: Contains the raw dataset (`advertising.csv`).
+-   **`notebooks/`**: Houses all Jupyter notebooks (`.ipynb` files) used for exploratory data analysis, predictive modeling, and comprehensive analysis.
+-   **`plots/`**: Stores all generated image files (`.png`) from the data visualization steps.
+-   **`scripts/`**: Contains Python scripts (`.py` files) for various tasks such as data loading, exploratory analysis, and regression modeling.
+-   **Root Directory**: The main directory contains essential project files like this `REPORT.md`, `README.md`, `.gitignore`, and `requirements.txt`.
 
 ## 1. Data Exploration and Preprocessing
 
