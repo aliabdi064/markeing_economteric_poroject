@@ -107,12 +107,12 @@ This analysis is detailed in the `notebooks/Predictive_Modeling.ipynb` notebook.
 Multiple Linear Regression is a statistical technique used to model the linear relationship between a dependent variable (in our case, Sales) and two or more independent variables (TV, Radio, Newspaper advertising spend). The goal is to find the best-fitting linear equation that predicts the dependent variable based on the independent variables.
 
 The general form of the multiple linear regression equation is:
-`Y = β₀ + β₁X₁ + β₂X₂ + ... + βₚXₚ + ε`
+`Sales = β₀ + β_TV * TV + β_Radio * Radio + β_Newspaper * Newspaper + ε`
 Where:
--   `Y`: The dependent variable (Sales).
--   `β₀`: The intercept, representing the expected value of Y when all independent variables are zero.
--   `β₁, β₂, ..., βₚ`: The coefficients for each independent variable, representing the change in Y for a one-unit increase in the corresponding X, holding other variables constant.
--   `X₁, X₂, ..., Xₚ`: The independent variables (TV, Radio, Newspaper).
+-   `Sales`: The dependent variable.
+-   `β₀`: The intercept, representing the baseline sales when all advertising spend is zero.
+-   `β_TV`, `β_Radio`, `β_Newspaper`: The coefficients for TV, Radio, and Newspaper advertising, respectively. These represent the change in Sales for a one-unit increase in the corresponding advertising spend, holding other advertising channels constant.
+-   `TV`, `Radio`, `Newspaper`: The independent variables representing advertising spend in each channel.
 -   `ε`: The error term, representing the unexplained variance or noise in the model.
 
 **Why is it important?**
