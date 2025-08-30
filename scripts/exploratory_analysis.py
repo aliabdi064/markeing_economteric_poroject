@@ -5,7 +5,7 @@ import seaborn as sns
 from scipy.stats import pearsonr
 
 # Load the dataset
-data = pd.read_csv('advertising.csv')
+data = pd.read_csv('data/advertising.csv')
 
 # --- Data Inspection ---
 print("--- Data Info ---")
