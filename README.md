@@ -157,6 +157,199 @@ For each advertising channel, a t-test is performed, and a p-value is calculated
 
 This analysis is detailed in the `notebooks/Predictive_Modeling.ipynb` notebook.
 
+# Marketing Spend Optimization & Sales Forecasting
+
+This project aims to build an econometric model to predict sales based on marketing spend.
+
+## Introduction
+
+**What is this project about?**
+
+This project aims to understand the relationship between advertising spend on different channels (TV, Radio, and Newspaper) and sales. We use econometric techniques to build a predictive model that can not only forecast sales but also help in optimizing the advertising budget.
+
+**Why is it important?**
+
+In today's competitive market, it's crucial for businesses to understand the effectiveness of their marketing campaigns. By analyzing the data, we can identify which advertising channels are providing the best return on investment and make data-driven decisions to maximize sales.
+
+## Project Structure
+
+The project is now organized into a clean and logical directory structure to enhance navigability and maintainability:
+
+-   **`data/`**: Contains the raw dataset (`advertising.csv`).
+-   **`notebooks/`**: Houses all Jupyter notebooks (`.ipynb` files) used for exploratory data analysis, predictive modeling, and comprehensive analysis.
+-   **`plots/`**: Stores all generated image files (`.png`) from the data visualization steps.
+-   **`scripts/`**: Contains Python scripts (`.py` files) for various tasks such as data loading, exploratory analysis, and regression modeling.
+-   **Root Directory**: The main directory contains essential project files like this `README.md`, `.gitignore`, and `requirements.txt`.
+
+## Environment Setup
+
+This project uses Python 3.12. To ensure a clean and isolated environment, it is highly recommended to use a virtual environment. This prevents conflicts with other projects and system-wide Python packages.
+
+### 1. Create a Virtual Environment
+
+Navigate to the project's root directory and run the following command to create a virtual environment named `.venv`:
+
+```bash
+python3 -m venv .venv
+```
+
+### 2. Activate the Virtual Environment
+
+Before installing the required packages, you need to activate the virtual environment. The activation command differs based on your operating system:
+
+-   **macOS and Linux:**
+
+    ```bash
+    source .venv/bin/activate
+    ```
+
+-   **Windows:**
+
+    ```bash
+    .venv\Scripts\activate
+    ```
+
+Once activated, your terminal prompt will be prefixed with `(.venv)`, indicating that you are now working inside the virtual environment.
+
+### 3. Install Required Packages
+
+With the virtual environment activated, you can now install all the necessary packages using the `requirements.txt` file. This file lists all the libraries and their specific versions needed to run the project.
+
+```bash
+pip install -r requirements.txt
+```
+
+This command will automatically download and install the following packages:
+
+-   **pandas:** For data manipulation and analysis.
+-   **scikit-learn:** For machine learning tools and utilities.
+-   **matplotlib:** For creating static, animated, and interactive visualizations.
+-   **seaborn:** For statistical data visualization.
+-   **statsmodels:** For statistical modeling, including regression and time series analysis.
+
+### 4. Deactivate the Virtual Environment
+
+When you are finished working on the project, you can deactivate the virtual environment by simply running:
+
+```bash
+deactivate
+```
+
+This will return you to your system's default Python environment.
+
+## How to Use This Project
+
+This project contains both Python scripts and Jupyter notebooks. Here's how you can use them:
+
+### Running the Python Scripts
+
+The `scripts` directory contains several Python scripts that perform specific tasks. To run a script, navigate to the project's root directory and use the following command:
+
+```bash
+python scripts/<script_name>.py
+```
+
+For example, to run the regression model script, you would use:
+
+```bash
+python scripts/regression_model.py
+```
+
+### Using the Jupyter Notebooks
+
+The `notebooks` directory contains Jupyter notebooks that provide a more interactive and detailed analysis. To use the notebooks, you need to have Jupyter Notebook or JupyterLab installed. If you don't have it installed, you can install it with pip:
+
+```bash
+pip install jupyterlab
+```
+
+Once installed, you can start JupyterLab by running the following command in the project's root directory:
+
+```bash
+jupyter-lab
+```
+
+This will open a new tab in your web browser with the JupyterLab interface. From there, you can navigate to the `notebooks` directory and open any of the `.ipynb` files.
+
+## Dataset
+
+The dataset used in this project is `advertising.csv`, which contains data on advertising spend across different channels and the corresponding sales.
+
+## Model
+
+The project will use a regression model to predict sales.
+
+## Exploratory Data Analysis Visualizations
+
+This section presents key visualizations generated during the exploratory data analysis phase, offering insights into the dataset's distributions and relationships.
+
+### Histograms of Variables
+![Histograms of all variables](plots/histograms.png)
+These histograms show the distribution of spending on TV, Radio, and Newspaper advertising, as well as the distribution of Sales.
+
+### Box Plots of Variables
+![Box plots of all variables](plots/boxplots.png)
+Box plots illustrate the spread and central tendency of each variable, helping to identify outliers and understand data variability.
+
+### Scatter Plots of Sales vs. Advertising Channels
+![Scatter plots of Sales vs. Advertising Channels](plots/scatter_plots.png)
+These plots visualize the relationship between advertising spend on TV, Radio, and Newspaper, and their corresponding impact on Sales. They help in identifying linear relationships and potential correlations.
+
+### Correlation Matrix Heatmap
+![Correlation Matrix Heatmap](plots/correlation_heatmap.png)
+This heatmap displays the correlation coefficients between all variables in the dataset, providing a quick overview of the strength and direction of linear relationships.
+
+## 1. Data Exploration and Preprocessing
+
+We started by loading the `advertising.csv` dataset and examining its structure. The dataset contains 200 rows and 4 columns: `TV`, `Radio`, `Newspaper`, and `Sales`. There are no missing values in the dataset. This analysis is primarily performed in the `scripts/exploratory_analysis.py` script and the `notebooks/Exploratory_Data_Analysis.ipynb` notebook.
+
+## 2. Correlation Analysis
+
+**What is Correlation?**
+Correlation measures the strength and direction of a linear relationship between two variables. A correlation coefficient (like Pearson's r) ranges from -1 to +1.
+-   **+1:** Perfect positive linear relationship (as one variable increases, the other increases proportionally).
+-   **-1:** Perfect negative linear relationship (as one variable increases, the other decreases proportionally).
+-   **0:** No linear relationship.
+
+**Why is it important?**
+Understanding correlations helps us identify which advertising channels have a stronger linear association with sales, providing initial insights into their potential effectiveness.
+
+**How it's used in this project:**
+We calculated the Pearson correlation coefficient between each advertising channel (TV, Radio, Newspaper) and Sales. This was visualized using a heatmap of the correlation matrix. The Pearson correlation test also provides a p-value, which indicates the probability of observing the data if there's no correlation. A low p-value (typically < 0.05) suggests that the correlation is statistically significant.
+
+**Results:**
+The correlation matrix shows the following relationships:
+
+*   **TV and Sales (0.901, p-value < 0.001):** This indicates a very strong, statistically significant positive linear correlation. As TV advertising spend increases, sales tend to increase significantly.
+*   **Radio and Sales (0.576, p-value < 0.001):** This shows a moderate, statistically significant positive linear correlation. Radio advertising also contributes positively to sales.
+*   **Newspaper and Sales (0.228, p-value < 0.001):** This suggests a weak, statistically significant positive linear correlation. Newspaper advertising has a negligible linear relationship with sales compared to TV and Radio.
+
+These results suggest that TV and Radio advertising are likely better predictors for Sales than Newspaper advertising. The correlation analysis can be found in `scripts/exploratory_analysis.py` and `notebooks/Exploratory_Data_Analysis.ipynb`.
+
+## 3. Hypothesis Testing
+
+**What is Hypothesis Testing?**
+Hypothesis testing is a statistical method used to make inferences about a population based on a sample of data. It involves formulating a null hypothesis (H0) and an alternative hypothesis (H1), collecting data, and then using statistical tests to determine whether there is enough evidence to reject the null hypothesis.
+
+**Why is it important?**
+In econometric modeling, hypothesis testing helps us determine if the relationships observed between variables in our sample data are statistically significant and likely to hold true for the larger population. It helps us avoid drawing conclusions based on random chance.
+
+**How it's used in this project:**
+We performed hypothesis tests on the coefficients of our regression model to determine the statistical significance of each advertising channel's impact on sales. Specifically, we looked at the p-value associated with each coefficient. The t-test is used to determine if the coefficient is significantly different from zero. A low p-value (typically < 0.05) indicates that the coefficient is statistically significant.
+
+**Hypotheses for each coefficient (e.g., for TV advertising):**
+*   **Null Hypothesis (H0):** There is no linear relationship between TV advertising spend and Sales (i.e., the coefficient for TV is zero).
+*   **Alternative Hypothesis (H1):** There is a linear relationship between TV advertising spend and Sales (i.e., the coefficient for TV is not zero).
+
+**Results (from the regression model summary):**
+For each advertising channel, a t-test is performed, and a p-value is calculated.
+
+*   **TV (p-value ≈ 0.000):** The p-value for TV advertising is extremely small (close to zero). Since this p-value is much less than the conventional significance level (alpha = 0.05), we **reject the null hypothesis**. This means there is strong statistical evidence to conclude that TV advertising has a significant linear relationship with Sales.
+*   **Radio (p-value ≈ 0.000):** Similarly, the p-value for Radio advertising is very small. We **reject the null hypothesis**, indicating a statistically significant linear relationship between Radio advertising and Sales.
+*   **Newspaper (p-value = 0.954):** The p-value for Newspaper advertising is very high (0.954). Since this p-value is much greater than 0.05, we **fail to reject the null hypothesis**. This implies that there is no statistically significant linear relationship between Newspaper advertising and Sales in this model.
+
+This analysis is detailed in the `notebooks/Predictive_Modeling.ipynb` notebook.
+
 ## 4. Regression Modeling, Evaluation, and Interpretation
 
 **What is Multiple Linear Regression?**
@@ -191,9 +384,9 @@ The model summary from the `notebooks/Predictive_Modeling.ipynb` notebook provid
 *   **Coefficients (β) and their p-values (t-test):**
     *   **What they mean:** The coefficients represent the estimated change in Sales for a one-unit increase in the corresponding advertising spend, holding other advertising spends constant. The p-value for each coefficient (from a t-test) indicates the statistical significance of that individual predictor.
     *   **Interpretation:**
-        *   **TV (Coefficient: 0.0544, p-value ≈ 0.000):** For every £1 increase in TV advertising spend, Sales are expected to increase by approximately 0.0458 units, holding Radio and Newspaper spend constant. The very low p-value indicates this relationship is highly statistically significant.
-        *   **Radio (Coefficient: 0.1070, p-value ≈ 0.000):** For every £1 increase in Radio advertising spend, Sales are expected to increase by approximately 0.1885 units, holding TV and Newspaper spend constant. This relationship is also highly statistically significant. Notably, Radio has a larger impact per unit of spend than TV.
-        *   **Newspaper (Coefficient: 0.0003, p-value = 0.954):** The coefficient for Newspaper is very close to zero and its p-value is very high. This indicates that Newspaper advertising does not have a statistically significant linear relationship with Sales in this model. The negative sign, though negligible, suggests a very slight, almost non-existent, inverse relationship.
+        *   **TV (Coefficient: 0.0544, p-value ≈ 0.000):** For every £1 increase in TV advertising spend, Sales are expected to increase by approximately 0.0544 units, holding Radio and Newspaper spend constant. The very low p-value indicates this relationship is highly statistically significant.
+        *   **Radio (Coefficient: 0.1070, p-value ≈ 0.000):** For every £1 increase in Radio advertising spend, Sales are expected to increase by approximately 0.1070 units, holding TV and Newspaper spend constant. This relationship is also highly statistically significant. Notably, Radio has a larger impact per unit of spend than TV.
+        *   **Newspaper (Coefficient: 0.0003, p-value = 0.954):** The coefficient for Newspaper is very close to zero and its p-value is very high. This indicates that Newspaper advertising does not have a statistically significant linear relationship with Sales in this model.
         *   **Intercept (β₀):** 4.6251. This represents the baseline sales when all advertising spend is zero.
 
 ### Regression Model Coefficients and Statistics
@@ -207,6 +400,104 @@ This image summarizes the estimated coefficients and their associated statistics
     *   **Interpretation:** The VIF values for all variables in our model are very low (all less than 2). This indicates that there is no significant multicollinearity among the advertising channels, ensuring that the individual coefficients can be reliably interpreted.
 
 This comprehensive analysis is detailed in the `notebooks/Predictive_Modeling.ipynb` notebook.
+
+## 5. Assumptions of OLS Regression and Diagnostic Considerations
+
+For a multiple linear regression model to provide reliable and unbiased estimates, several key assumptions about the data and the error term (`ε`) must be met. While our primary analysis focused on model building and interpretation, a thorough econometric study also involves diagnostic tests to validate these assumptions.
+
+Here are the core assumptions of Ordinary Least Squares (OLS) regression and their diagnostic considerations:
+
+### 5.1 Linearity
+
+*   **Assumption:** The relationship between the independent variables (TV, Radio, Newspaper) and the dependent variable (Sales) is linear.
+*   **Why it's important:** If the relationship is non-linear, a linear model will not accurately capture the true relationship, leading to biased coefficients and poor predictions.
+*   **Diagnostic Consideration:** Visual inspection of scatter plots (e.g., Sales vs. TV, Sales vs. Radio) can provide initial insights. Residual plots (residuals vs. fitted values) can also reveal non-linear patterns if present.
+*   **In this project:** Our initial EDA (pair plots with regression lines) suggested a largely linear relationship, which supports the use of a linear model.
+
+### 5.2 No Perfect Multicollinearity
+
+*   **Assumption:** The independent variables are not perfectly correlated with each other.
+*   **Why it's important:** Perfect multicollinearity makes it impossible for the model to uniquely estimate the individual coefficients of the correlated variables. High (but not perfect) multicollinearity can lead to unstable and unreliable coefficient estimates.
+*   **Diagnostic Test:** Variance Inflation Factor (VIF).
+*   **In this project:** As discussed in Section 4, the VIF values for all our independent variables were very low (all less than 2), indicating that **this assumption is met**, and there is no significant multicollinearity.
+
+### 5.3 Homoscedasticity (Constant Variance of Residuals)
+
+*   **Assumption:** The variance of the error terms (`ε`) is constant across all levels of the independent variables. In simpler terms, the spread of the residuals should be roughly the same across the range of predicted values.
+*   **Why it's important:** Violations (heteroscedasticity) lead to inefficient (though still unbiased) coefficient estimates, meaning standard errors are incorrect, and thus hypothesis tests (t-tests, F-test) and confidence intervals are unreliable.
+*   **Diagnostic Tests:**
+    *   **Visual Inspection:** Plotting residuals against fitted values. A "fanning out" or "funnel" shape suggests heteroscedasticity.
+    *   **Statistical Tests:** Breusch-Pagan test, White test.
+*   **In this project:** The Breusch-Pagan test was not performed in the scripts, but a visual inspection of the residual plots would be a good next step.
+
+### 5.4 No Autocorrelation (Independence of Residuals)
+
+*   **Assumption:** The error terms (`ε`) are independent of each other. This is particularly relevant for time-series data, where errors from one period might be correlated with errors from a previous period.
+*   **Why it's important:** Autocorrelation leads to inefficient coefficient estimates and incorrect standard errors, similar to heteroscedasticity.
+*   **Diagnostic Test:** Durbin-Watson test. A Durbin-Watson statistic close to 2 suggests no autocorrelation. Values significantly below 2 indicate positive autocorrelation, and values significantly above 2 indicate negative autocorrelation.
+*   **In this project:** The Durbin-Watson statistic from our model is 2.251, which is close to 2, suggesting that there is no significant autocorrelation in the residuals.
+
+### 5.5 Normality of Residuals
+
+*   **Assumption:** The error terms (`ε`) are normally distributed.
+*   **Why it's important:** While OLS estimates remain unbiased even with non-normal errors (especially with large sample sizes due to the Central Limit Theorem), normality is required for the t-tests and F-test to be strictly valid for small sample sizes. It also helps in constructing accurate confidence intervals and prediction intervals.
+*   **Diagnostic Tests:**
+    *   **Visual Inspection:** Histogram of residuals, Q-Q plot (Quantile-Quantile plot).
+    *   **Statistical Tests:** Jarque-Bera test, Shapiro-Wilk test.
+*   **In this project:** The Jarque-Bera (JB) test statistic is 27.655 with a p-value of 9.88e-07. This low p-value suggests that the residuals are not normally distributed. This is a violation of the OLS assumption and should be taken into consideration when interpreting the model's results.
+
+### Summary of Diagnostic Considerations
+
+While the model demonstrates strong predictive power (high R-squared) and significant predictors (low p-values for TV and Radio), a complete econometric analysis would involve systematically checking all OLS assumptions. The provided notebooks primarily focus on model building and interpretation. For future work, incorporating these diagnostic tests would further strengthen the model's validity and the reliability of its inferences.
+
+## 6. Budget Optimization
+
+The previous budget optimization aimed to maximize sales by allocating the entire budget to the most effective channel. Now, we will allocate the £1000 budget proportionally across all marketing channels based on their respective regression coefficients.
+
+**Strategy:** Allocate budget based on the proportion of each channel's positive coefficient relative to the sum of all positive coefficients.
+
+**Results of Proportional Allocation:**
+
+*   **Total Budget:** £1000.00
+*   **TV Coefficient:** 0.0544 (33.65% of positive coefficients)
+*   **Radio Coefficient:** 0.1070 (66.14% of positive coefficients)
+*   **Newspaper Coefficient:** 0.0003 (0.21% of positive coefficients)
+
+**Allocated Spend:**
+
+*   **TV:** £336.54
+*   **Radio:** £661.39
+*   **Newspaper:** £2.07
+
+**Estimated Sales with Proportional Allocation:** 93.72
+
+This result shows that while all channels receive a portion of the budget, the estimated sales are lower (93.72) compared to the previous strategy of allocating the entire budget to Radio (111.63). This highlights the trade-off between distributing the budget and maximizing overall sales.
+
+## 7. A/B Testing Discussion
+
+The `data/advertising.csv` dataset is an observational dataset. Therefore, a traditional A/B test is not applicable. While we cannot perform a traditional A/B test, our regression model can still provide valuable insights. However, we should be careful about making strong causal claims based on this observational data.
+
+## 8. Conclusion and Recommendations
+
+**Summary of Findings:**
+
+*   We have successfully built a multiple linear regression model that can predict sales based on advertising spend.
+*   The model has a high R-squared value (0.903).
+*   TV and Radio advertising have a statistically significant positive impact on sales, with Radio having a much larger impact per pound spent.
+*   Newspaper advertising does not have a statistically significant impact on sales.
+
+**Recommendations:**
+
+*   **Focus on Radio advertising:** The model suggests that Radio advertising is the most effective channel for increasing sales.
+*   **Continue with TV advertising:** TV advertising also has a significant positive impact on sales.
+*   **Re-evaluate Newspaper advertising:** The company should consider re-evaluating its strategy for Newspaper advertising and potentially reallocate the budget to Radio and TV.
+
+**Next Steps and Further Analysis:**
+
+*   **Explore Interaction Terms:** The current model assumes that the effect of each advertising channel is independent. It would be worthwhile to explore interaction terms (e.g., the combined effect of TV and Radio advertising) to see if they improve the model.
+*   **Consider Non-linear Models:** The relationship between advertising spend and sales might not be perfectly linear. Exploring non-linear models could potentially yield a more accurate model.
+*   **Run Controlled Experiments:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.
+
 
 ## 5. Assumptions of OLS Regression and Diagnostic Considerations
 
