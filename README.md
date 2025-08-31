@@ -22,6 +22,62 @@ The project is now organized into a clean and logical directory structure to enh
 -   **`scripts/`**: Contains Python scripts (`.py` files) for various tasks such as data loading, exploratory analysis, and regression modeling.
 -   **Root Directory**: The main directory contains essential project files like this `README.md`, `.gitignore`, and `requirements.txt`.
 
+## Environment Setup
+
+This project uses Python 3.12. To ensure a clean and isolated environment, it is highly recommended to use a virtual environment. This prevents conflicts with other projects and system-wide Python packages.
+
+### 1. Create a Virtual Environment
+
+Navigate to the project's root directory and run the following command to create a virtual environment named `.venv`:
+
+```bash
+python3 -m venv .venv
+```
+
+### 2. Activate the Virtual Environment
+
+Before installing the required packages, you need to activate the virtual environment. The activation command differs based on your operating system:
+
+-   **macOS and Linux:**
+
+    ```bash
+    source .venv/bin/activate
+    ```
+
+-   **Windows:**
+
+    ```bash
+    .venv\Scripts\activate
+    ```
+
+Once activated, your terminal prompt will be prefixed with `(.venv)`, indicating that you are now working inside the virtual environment.
+
+### 3. Install Required Packages
+
+With the virtual environment activated, you can now install all the necessary packages using the `requirements.txt` file. This file lists all the libraries and their specific versions needed to run the project.
+
+```bash
+pip install -r requirements.txt
+```
+
+This command will automatically download and install the following packages:
+
+-   **pandas:** For data manipulation and analysis.
+-   **scikit-learn:** For machine learning tools and utilities.
+-   **matplotlib:** For creating static, animated, and interactive visualizations.
+-   **seaborn:** For statistical data visualization.
+-   **statsmodels:** For statistical modeling, including regression and time series analysis.
+
+### 4. Deactivate the Virtual Environment
+
+When you are finished working on the project, you can deactivate the virtual environment by simply running:
+
+```bash
+deactivate
+```
+
+This will return you to your system's default Python environment.
+
 ## Dataset
 
 The dataset used in this project is `advertising.csv`, which contains data on advertising spend across different channels and the corresponding sales.
