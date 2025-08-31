@@ -73,7 +73,7 @@ The correlation matrix shows the following relationships:
 
 *   **TV and Sales (0.901):** This indicates a very strong positive linear correlation. As TV advertising spend increases, sales tend to increase significantly.
 *   **Radio and Sales (0.350):** This shows a weak to moderate positive linear correlation. Radio advertising also contributes positively to sales.
-*   **Newspaper and Sales (0.158):** This suggests a very weak positive linear correlation. Newspaper advertising has a negligible linear relationship with sales compared to TV and Radio.
+*   **Newspaper and Sales (0.228):** This suggests a weak positive linear correlation. Newspaper advertising has a negligible linear relationship with sales compared to TV and Radio.
 
 These results suggest that TV and Radio advertising are likely better predictors for Sales than Newspaper advertising. The correlation analysis can be found in `scripts/exploratory_analysis.py` and `notebooks/Exploratory_Data_Analysis.ipynb`.
 
@@ -247,4 +247,4 @@ The `data/advertising.csv` dataset is an observational dataset. Therefore, a tra
 
 *   **Explore Interaction Terms:** The current model assumes that the effect of each advertising channel is independent. It would be worthwhile to explore interaction terms (e.g., the combined effect of TV and Radio advertising) to see if they improve the model.
 *   **Consider Non-linear Models:** The relationship between advertising spend and sales might not be perfectly linear. Exploring non-linear models could potentially yield a more accurate model.
-*   **Run Controlled Experiments:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.
+*   **Run Controlled Experiments:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.ture.

@@ -55,17 +55,14 @@ else:
 
     tv_percent = tv_coef / total_positive_coef_sum if tv_coef > 0 else 0
     radio_percent = radio_coef / total_positive_coef_sum if radio_coef > 0 else 0
-    newspaper_percent = newspaper_coef / total_positive_positive_coef_sum if newspaper_coef > 0 else 0
+    newspaper_percent = newspaper_coef / total_positive_coef_sum if newspaper_coef > 0 else 0
 
     tv_spend = budget * tv_percent
     radio_spend = budget * radio_percent
     newspaper_spend = budget * newspaper_percent
 
     # Calculate estimated sales with this allocation
-    estimated_sales = model.params[0] +
-                      model.params[1] * tv_spend +
-                      model.params[2] * radio_spend +
-                      model.params[3] * newspaper_spend
+    estimated_sales = model.params[0] + model.params[1] * tv_spend + model.params[2] * radio_spend + model.params[3] * newspaper_spend
 
     print(f"Total Budget: £{budget:.2f}")
     print(f"TV Coefficient: {tv_coef:.4f} ({tv_percent:.2%})")
