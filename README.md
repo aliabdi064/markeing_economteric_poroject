@@ -343,8 +343,9 @@ The `data/advertising.csv` dataset is an observational dataset. Therefore, a tra
 
 
 Update 1 : 
+![Update](plots/Budget.jpg)
 
-![Update1: another method for budget optimisation](plots/Budget.png)
+
 
 
 
