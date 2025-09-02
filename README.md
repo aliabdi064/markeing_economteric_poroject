@@ -338,3 +338,101 @@ The `data/advertising.csv` dataset is an observational dataset. Therefore, a tra
 *   **Explore Interaction Terms:** The current model assumes that the effect of each advertising channel is independent. It would be worthwhile to explore interaction terms (e.g., the combined effect of TV and Radio advertising) to see if they improve the model.
 *   **Consider Non-linear Models:** The relationship between advertising spend and sales might not be perfectly linear. Exploring non-linear models could potentially yield a more accurate model.
 *   **Run Controlled Experiments:** To get a better understanding of the causal impact of advertising on sales, the company should consider running controlled experiments (e.g., A/B tests) in the future.
+
+
+
+
+
+
+
+
+
+
+
+
+**Update 1** : you can use the following method for budget allocation, which is more complicated: 
+
+# Budget Allocation with Saturating (Concave) Response + Constrained Optimisation
+
+We want to allocate a total budget of **£1000** across 3 channels using a concave response function.  
+Each channel \( j \) has response:
+
+\[
+f_j(s_j) = a_j \big(1 - e^{-b_j s_j}\big)
+\]
+
+with parameters:
+
+- **TV**: \(a=500, b=0.005\)  
+- **Online**: \(a=400, b=0.01\)  
+- **Print**: \(a=300, b=0.002\)
+
+The optimisation problem:
+
+\[
+\max_{s_{TV},s_{Online},s_{Print}} f_{TV}(s_{TV}) + f_{Online}(s_{Online}) + f_{Print}(s_{Print})
+\]
+
+subject to
+
+\[
+s_{TV} + s_{Online} + s_{Print} = 1000, \quad s_j \geq 0
+\]
+
+---
+
+### Step 1: Marginal Returns
+Derivative:
+
+\[
+f'_j(s_j) = a_j b_j e^{-b_j s_j}
+\]
+
+- TV: \(f'_{TV}(s) = 500 \cdot 0.005 \cdot e^{-0.005s} = 2.5 e^{-0.005s}\)  
+- Online: \(f'_{Online}(s) = 400 \cdot 0.01 \cdot e^{-0.01s} = 4 e^{-0.01s}\)  
+- Print: \(f'_{Print}(s) = 300 \cdot 0.002 \cdot e^{-0.002s} = 0.6 e^{-0.002s}\)
+
+---
+
+### Step 2: Equalise Marginal Returns (Lagrangian condition)
+
+At optimum,  
+\[
+f'_{TV}(s_{TV}) = f'_{Online}(s_{Online}) = f'_{Print}(s_{Print}) = \lambda
+\]
+
+---
+
+### Step 3: Solve
+
+We solve for \(s_j\):
+
+\[
+s_j = -\frac{1}{b_j}\ln\Big(\frac{\lambda}{a_j b_j}\Big)
+\]
+
+Pick \(\lambda\) so that total spend = 1000.
+
+Numerical solution:
+
+- \(s_{TV} \approx 479\)  
+- \(s_{Online} \approx 353\)  
+- \(s_{Print} \approx 168\)
+
+---
+
+### Step 4: Verify Sum
+
+\[
+479 + 353 + 168 = 1000
+\]
+
+---
+
+### Step 5: Expected Returns
+
+- TV: \(f_{TV}(479) = 500 \cdot (1 - e^{-0.005\cdot 479}) \approx 490\)  
+- Online: \(f_{Online}(353) = 400 \cdot (1 - e^{-0.01\cdot 353}) \approx 399\)  
+- Print: \(f_{Print}(168) = 300 \cdot (1 - e^{-0.002\cdot 168}) \approx 92\)
+
+**Total expected return ≈ 981**
