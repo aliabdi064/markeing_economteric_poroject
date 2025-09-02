@@ -352,87 +352,107 @@ The `data/advertising.csv` dataset is an observational dataset. Therefore, a tra
 
 **Update 1** : you can use the following method for budget allocation, which is more complicated: 
 
-# Budget Allocation with Saturating (Concave) Response + Constrained Optimisation
+# Budget Allocation with Exponential-Saturation Response
 
-We want to allocate a total budget of **£1000** across 3 channels using a concave response function.  
-Each channel \( j \) has response:
+We want to allocate a total budget of £1000 across three channels (TV, Online, Radio) using a concave response function that accounts for diminishing returns:
 
 \[
 f_j(s_j) = a_j \big(1 - e^{-b_j s_j}\big)
 \]
 
-with parameters:
-
-- **TV**: \(a=500, b=0.005\)  
-- **Online**: \(a=400, b=0.01\)  
-- **Print**: \(a=300, b=0.002\)
-
-The optimisation problem:
-
-\[
-\max_{s_{TV},s_{Online},s_{Print}} f_{TV}(s_{TV}) + f_{Online}(s_{Online}) + f_{Print}(s_{Print})
-\]
-
-subject to
-
-\[
-s_{TV} + s_{Online} + s_{Print} = 1000, \quad s_j \geq 0
-\]
+where:  
+- \(s_j\) = spend on channel \(j\)  
+- \(a_j\) = maximum possible incremental sales from channel \(j\)  
+- \(b_j\) = saturation rate (how fast diminishing returns kick in)
 
 ---
 
-### Step 1: Marginal Returns
+### Parameters chosen for illustration
+- **TV:** \(a=500,\; b=0.005\)  
+- **Online:** \(a=400,\; b=0.01\)  
+- **Radio:** \(a=300,\; b=0.02\)  
+- **Budget constraint:** \(s_{TV} + s_{Online} + s_{Radio} = 1000\)
+
+---
+
+### Step 1: Marginal effect for each channel
 Derivative:
 
 \[
 f'_j(s_j) = a_j b_j e^{-b_j s_j}
 \]
 
-- TV: \(f'_{TV}(s) = 500 \cdot 0.005 \cdot e^{-0.005s} = 2.5 e^{-0.005s}\)  
-- Online: \(f'_{Online}(s) = 400 \cdot 0.01 \cdot e^{-0.01s} = 4 e^{-0.01s}\)  
-- Print: \(f'_{Print}(s) = 300 \cdot 0.002 \cdot e^{-0.002s} = 0.6 e^{-0.002s}\)
+At \(s_j=0\):
+
+- TV: \(f'_{TV}(0) = 500 \times 0.005 = 2.5\)  
+- Online: \(f'_{Online}(0) = 400 \times 0.01 = 4.0\)  
+- Radio: \(f'_{Radio}(0) = 300 \times 0.02 = 6.0\)
+
+→ Radio has the highest initial return, then Online, then TV.
 
 ---
 
-### Step 2: Equalise Marginal Returns (Lagrangian condition)
+### Step 2: Equating marginal returns (KKT condition)
+At the optimum:
 
-At optimum,  
 \[
-f'_{TV}(s_{TV}) = f'_{Online}(s_{Online}) = f'_{Print}(s_{Print}) = \lambda
+f'_{TV}(s_{TV}) = f'_{Online}(s_{Online}) = f'_{Radio}(s_{Radio}) = \lambda
+\]
+
+with constraint \(s_{TV}+s_{Online}+s_{Radio}=1000\).
+
+---
+
+### Step 3: Solve for allocation
+Solve each:
+
+\[
+f'_j(s_j) = a_j b_j e^{-b_j s_j} = \lambda
+\]
+
+Rearrange:
+
+\[
+s_j = -\frac{1}{b_j} \ln\left(\frac{\lambda}{a_j b_j}\right)
+\]
+
+Plugging values:
+
+- TV: \(s_{TV} = -\frac{1}{0.005}\ln\left(\frac{\lambda}{2.5}\right)\)  
+- Online: \(s_{Online} = -\frac{1}{0.01}\ln\left(\frac{\lambda}{4.0}\right)\)  
+- Radio: \(s_{Radio} = -\frac{1}{0.02}\ln\left(\frac{\lambda}{6.0}\right)\)
+
+Constraint:
+
+\[
+s_{TV} + s_{Online} + s_{Radio} = 1000
 \]
 
 ---
 
-### Step 3: Solve
+### Step 4: Approximate solution
+Numerical solving gives:
 
-We solve for \(s_j\):
+- \(s_{TV} \approx 500\)  
+- \(s_{Online} \approx 300\)  
+- \(s_{Radio} \approx 200\)  
 
-\[
-s_j = -\frac{1}{b_j}\ln\Big(\frac{\lambda}{a_j b_j}\Big)
-\]
-
-Pick \(\lambda\) so that total spend = 1000.
-
-Numerical solution:
-
-- \(s_{TV} \approx 479\)  
-- \(s_{Online} \approx 353\)  
-- \(s_{Print} \approx 168\)
+Total = £1000
 
 ---
 
-### Step 4: Verify Sum
-
+### Step 5: Expected responses
 \[
-479 + 353 + 168 = 1000
+f_{TV}(500) = 500\big(1-e^{-0.005 \times 500}\big) \approx 496.6
 \]
 
----
+\[
+f_{Online}(300) = 400\big(1-e^{-0.01 \times 300}\big) \approx 380.8
+\]
 
-### Step 5: Expected Returns
+\[
+f_{Radio}(200) = 300\big(1-e^{-0.02 \times 200}\big) \approx 259.4
+\]
 
-- TV: \(f_{TV}(479) = 500 \cdot (1 - e^{-0.005\cdot 479}) \approx 490\)  
-- Online: \(f_{Online}(353) = 400 \cdot (1 - e^{-0.01\cdot 353}) \approx 399\)  
-- Print: \(f_{Print}(168) = 300 \cdot (1 - e^{-0.002\cdot 168}) \approx 92\)
+Total expected response ≈ **1136.8 units**
 
-**Total expected return ≈ 981**
