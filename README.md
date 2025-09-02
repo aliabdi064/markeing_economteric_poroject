@@ -342,8 +342,7 @@ The `data/advertising.csv` dataset is an observational dataset. Therefore, a tra
 
 
 
-**Update 1:** another method for optimisation, which is more complicated  
-![](plots/Budget.jpg)
+**Update 1:** 
 
 
 
