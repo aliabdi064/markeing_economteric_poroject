@@ -12,6 +12,10 @@ This project aims to understand the relationship between advertising spend on di
 
 In today's competitive market, it's crucial for businesses to understand the effectiveness of their marketing campaigns. By analyzing the data, we can identify which advertising channels are providing the best return on investment and make data-driven decisions to maximize sales.
 
+**Data Collection**
+In advertising analytics or other similar tasks, it’s about how we collect and structure them. You can collect data gradually each month from advertising channels, which spreads costs and gives long-term insights. But if you want stronger regression models, sometimes you need more than passive data. By deliberately varying spend across campaigns or time periods (in a structured way), you can uncover deeper causal relationships and build more reliable models. This balance between gradual collection and designed variation is key for accurate analysis.
+
+
 ## Project Structure
 
 The project is now organized into a clean and logical directory structure to enhance navigability and maintainability:
