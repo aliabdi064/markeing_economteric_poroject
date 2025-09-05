@@ -319,6 +319,9 @@ The previous budget optimization aimed to maximize sales by allocating the entir
 
 This result shows that while all channels receive a portion of the budget, the estimated sales are lower (93.72) compared to the previous strategy of allocating the entire budget to Radio (111.63). This highlights the trade-off between distributing the budget and maximizing overall sales.
 
+
+<span style="color:red">However, in real life returns are rarely purely linear: they usually diminish with spend, have lags, and there are strategic reasons to diversify — so proportional allocation can be a practical heuristic but not an optimally justified one.</span>
+
 ## 7. A/B Testing Discussion
 
 The `data/advertising.csv` dataset is an observational dataset. Therefore, a traditional A/B test is not applicable. While we cannot perform a traditional A/B test, our regression model can still provide valuable insights. However, we should be careful about making strong causal claims based on this observational data.
